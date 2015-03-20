@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+require 'kingpin'
+Kingpin::CommandLine.new(ARGV).run
