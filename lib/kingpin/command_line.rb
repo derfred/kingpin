@@ -1,3 +1,6 @@
+require 'optparse'
+require 'ostruct'
+
 module Kingpin
   class CommandLine
     def initialize(args)
@@ -5,7 +8,8 @@ module Kingpin
     end
 
     def run
-      
+      web_server = Kingpin::WebServerBuilder.new.build_application(options)
+      web_server.run
     end
 
     private
@@ -20,7 +24,6 @@ module Kingpin
       end
 
       def parse(args)
-        options = {}
         OptionParser.new do |opts|
           opts.on('--address=ADDRESS', 'address to listen on') do |o|
             options.address = o
