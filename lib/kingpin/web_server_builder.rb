@@ -3,8 +3,6 @@ require 'webmachine'
 module Kingpin
   class WebServerBuilder
     def build_application(options)
-      Bootstrap.load!
-
       Webmachine::Application.new do |app|
         app.routes do
           add [''],           Kingpin::Resources::Home

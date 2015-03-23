@@ -2,4 +2,4 @@
 
 $LOAD_PATH.unshift File.dirname(__FILE__) + '/../lib'
 require 'kingpin'
-Kingpin::CommandLine.new(ARGV).run
+Kingpin::Application.run(ARGV)

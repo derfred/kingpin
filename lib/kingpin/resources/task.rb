@@ -1,8 +1,6 @@
 module Kingpin
   module Resources
-    class Task < Webmachine::Resource
-      include Kingpin::RenderHelper
-
+    class Task < Base
       def allowed_methods
         ['GET']
       end

@@ -1,2 +1,33 @@
 %div
-  %h1 Tasks
+  %h1 Available Tasks
+  %table.table
+    %thead
+      %tr
+        %td Name
+        %td Description
+        %td
+    %tbody
+      - for task in tasks
+        %tr
+          %td= task.name
+          %td= task.description
+          %td
+            %button.btn.btn-mini Execute
+
+  %h1 Active/Completed Jobs
+  %table.table
+    %thead
+      %tr
+        %td ID
+        %td Name
+        %td State
+        %td
+    %tbody
+      - for job in jobs
+        %tr
+          %td= job.id
+          %td= job.name
+          %td= job.state
+          %td
+            - if job.state == :running
+              %button.btn.btn-mini Abort

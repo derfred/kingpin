@@ -1,8 +1,6 @@
 module Kingpin
   module Resources
-    class Home < Webmachine::Resource
-      include Kingpin::RenderHelper
-
+    class Home < Base
       def allowed_methods
         ['GET','HEAD']
       end
