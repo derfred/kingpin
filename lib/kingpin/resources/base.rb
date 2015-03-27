@@ -4,7 +4,7 @@ module Kingpin
       include Kingpin::RenderHelper
 
       def registry
-        Kingpin::Application.instance.registry
+        Celluloid::Actor[:registry]
       end
 
       def configuration

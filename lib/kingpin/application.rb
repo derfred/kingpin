@@ -18,7 +18,7 @@ module Kingpin
       parse args
 
       @configuration = load_config
-      @registry      = Kingpin::Registry.new
+      @registry      = Kingpin::Registry.supervise_as :registry
       @runner        = Kingpin::JobRunner.pool :size => settings.max_tasks
     end
 
@@ -26,7 +26,7 @@ module Kingpin
       if settings.initial
         task = configuration.find(settings.initial)
         raise ArgumentError if task.nil?
-        @runner.run task
+        @runner.run task, settings.options
       end
 
       web_server = Kingpin::WebServerBuilder.new.build_application(settings)
@@ -77,7 +77,7 @@ module Kingpin
       end
 
       def load_config
-        Kingpin::Configuration.new settings.config, settings.options
+        Kingpin::Dsl::ConfigurationReader.new(settings.config, settings.options).read
       end
   end
 end

@@ -1,13 +1,24 @@
+GIT
+  remote: https://github.com/derfred/kubeclient.git
+  revision: b8f0991e2aaf99e270f12db8602d742e1f25ff7a
+  branch: add_namespace_support
+  specs:
+    kubeclient (0.1.5)
+      activesupport
+      json
+      recursive-open-struct
+      rest-client
+
 GEM
   remote: http://rubygems.org/
   specs:
+    activesupport (4.2.1)
+      i18n (~> 0.7)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.3, >= 0.3.4)
+      tzinfo (~> 1.1)
     as-notifications (1.0.1)
-    autoprefixer-rails (5.1.7.1)
-      execjs
-      json
-    bootstrap-sass (3.3.4.1)
-      autoprefixer-rails (>= 5.0.0.1)
-      sass (>= 3.2.19)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     celluloid-io (0.16.2)
@@ -15,7 +26,8 @@ GEM
       nio4r (>= 1.1.0)
     coderay (1.1.0)
     diff-lcs (1.2.5)
-    execjs (2.4.0)
+    domain_name (0.5.23)
+      unf (>= 0.0.5, < 1.0.0)
     ffi (1.9.8)
     formatador (0.2.5)
     guard (2.12.5)
@@ -34,11 +46,12 @@ GEM
       rspec (>= 2.99.0, < 4.0)
     haml (4.0.6)
       tilt
-    hike (1.2.3)
     hitimes (1.2.2)
     http (0.7.2)
       http-form_data (~> 1.0.0)
       http_parser.rb (~> 0.6.0)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     http-form_data (1.0.0)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
@@ -49,8 +62,11 @@ GEM
       rb-inotify (>= 0.9)
     lumberjack (1.0.9)
     method_source (0.8.2)
+    mime-types (2.4.3)
+    minitest (5.5.1)
     multi_json (1.11.0)
     nenv (0.2.0)
+    netrc (0.10.3)
     nio4r (1.1.0)
     notiffany (0.0.6)
       nenv (~> 0.1)
@@ -59,16 +75,20 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    rack (1.6.0)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
+    recursive-open-struct (0.5.0)
     reel (0.5.0)
       celluloid (>= 0.15.1)
       celluloid-io (>= 0.15.0)
       http (>= 0.6.0.pre)
       http_parser.rb (>= 0.6.0)
       websocket_parser (>= 0.1.6)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rspec (3.2.0)
       rspec-core (~> 3.2.0)
       rspec-expectations (~> 3.2.0)
@@ -82,37 +102,33 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
-    sass (3.4.13)
     shellany (0.0.1)
     slop (3.6.0)
-    sprockets (2.12.3)
-      hike (~> 1.2)
-      multi_json (~> 1.0)
-      rack (~> 1.0)
-      tilt (~> 1.1, != 1.3.0)
     thor (0.19.1)
+    thread_safe (0.3.5)
     tilt (1.4.1)
     timers (4.0.1)
       hitimes
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.6)
     webmachine (1.4.0)
       as-notifications (~> 1.0)
       i18n (>= 0.4.0)
       multi_json
-    webmachine-sprockets (0.2.0)
-      sprockets (~> 2.0)
-      webmachine (~> 1.0)
     websocket_parser (1.0.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass
   celluloid
   guard
   guard-rspec
   haml
+  kubeclient!
   reel
   rspec
   webmachine
-  webmachine-sprockets
