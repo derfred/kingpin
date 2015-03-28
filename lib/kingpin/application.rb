@@ -1,5 +1,6 @@
 require 'optparse'
 require 'ostruct'
+require 'webmachine'
 
 module Kingpin
   class Application
