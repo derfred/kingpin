@@ -30,7 +30,7 @@ module Kingpin
           }
         }
 
-        rc = ReplicationController.new(hash)
+        rc = Kubeclient::ReplicationController.new(hash)
       end
     end
   end

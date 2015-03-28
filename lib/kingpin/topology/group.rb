@@ -1,7 +1,7 @@
 module Kingpin
   module Topology
     class Group
-      attr_reader :name, :template_class
+      attr_reader :name, :template_class, :groups, :components
       attr_accessor :parent
       def initialize(name, groups, components, template_class)
         @name, @groups, @components, @template_class = name.to_sym, groups, components, template_class

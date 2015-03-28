@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/derfred/kubeclient.git
-  revision: b8f0991e2aaf99e270f12db8602d742e1f25ff7a
-  branch: add_namespace_support
+  revision: 70098f9d7a5a4fd0f6b0457376860518923680d8
+  branch: namespace_support
   specs:
-    kubeclient (0.1.5)
+    kubeclient (0.1.8)
       activesupport
       json
       recursive-open-struct
@@ -107,6 +107,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
+    timeout-extensions (0.0.0)
     timers (4.0.1)
       hitimes
     tzinfo (1.2.2)
@@ -131,4 +132,5 @@ DEPENDENCIES
   kubeclient!
   reel
   rspec
+  timeout-extensions
   webmachine

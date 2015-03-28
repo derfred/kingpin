@@ -39,7 +39,7 @@ module Kingpin
       end
 
       def include_task(name)
-        
+        @tasks << _build_task_reference(name)
       end
 
       def read
@@ -55,6 +55,12 @@ module Kingpin
       end
 
       private
+        def _build_task_reference(name)
+          klass = Class.new(Kingpin::TaskReference)
+          klass.instance_variable_set(:@name, name)
+          klass
+        end
+
         def _build_task(name, action)
           klass = Class.new(Kingpin::Task)
           klass.send :define_method, :action, &action

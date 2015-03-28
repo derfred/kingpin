@@ -17,11 +17,7 @@ module Kingpin
     end
 
     def method_missing(name, *args, &block)
-      if task = configuration.find(name)
-        task.new.run *args
-      else
-        super
-      end
+      run_task(name, *args) || super
     end
 
     private
@@ -35,6 +31,15 @@ module Kingpin
 
       def topology
         configuration.topology
+      end
+
+      def run_task(name, *args)
+        if task = configuration.find(name)
+          task.new.run *args
+          true
+        else
+          false
+        end
       end
   end
 end

@@ -21,9 +21,9 @@ module Kingpin
             :name   => @name,
             :labels => @labels
           },
-          :spec => @spec.merge(@selector)
+          :spec => @spec.merge(:selector => @selector)
         }
-        Service.new(hash)
+        Kubeclient::Service.new(hash)
       end
     end
   end

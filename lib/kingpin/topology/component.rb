@@ -14,6 +14,10 @@ module Kingpin
       def template
         @parent.template
       end
+
+      def template_class
+        @parent.template_class
+      end
     end
   end
 end

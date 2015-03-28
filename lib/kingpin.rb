@@ -8,7 +8,7 @@ module Kingpin
   end
 end
 
-%w{render_helper web_server_builder task task_sequence job configuration template registry job_runner application dsl_helper}.each do |f|
+%w{render_helper web_server_builder task task_sequence task_reference job configuration template registry job_runner application dsl_helper}.each do |f|
   require "kingpin/#{f}"
 end
 
