@@ -8,7 +8,15 @@ module Kingpin
         @name  = name
         @type  = :action
         @tasks = []
-        instance_eval &block
+        eval_dsl_block &block
+      end
+
+      def description=(description)
+        @description = description
+      end
+
+      def description(description)
+        @description = description
       end
 
       def action(&block)
@@ -23,7 +31,7 @@ module Kingpin
       end
 
       def run(name, &block)
-        @tasks << _build_task(name, block)
+        @tasks << _build_task(name, nil, block)
       end
 
       def sequence(&block)
@@ -50,7 +58,7 @@ module Kingpin
         if @type == :sequence
           _build_sequence(@name, @tasks)
         else
-          _build_task(@name, @action)
+          _build_task(@name, @description, @action)
         end
       end
 
@@ -61,10 +69,11 @@ module Kingpin
           klass
         end
 
-        def _build_task(name, action)
+        def _build_task(name, description, action)
           klass = Class.new(Kingpin::Task)
           klass.send :define_method, :action, &action
           klass.instance_variable_set(:@name, name)
+          klass.instance_variable_set(:@description, description)
           klass
         end
 

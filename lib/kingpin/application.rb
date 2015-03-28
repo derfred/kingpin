@@ -24,10 +24,12 @@ module Kingpin
     end
 
     def run
+      Celluloid.start
+
       if settings.initial
         task = configuration.find(settings.initial)
         raise ArgumentError if task.nil?
-        @runner.run task, settings.options
+        @runner.async.run task, settings.options
       end
 
       web_server = Kingpin::WebServerBuilder.new.build_application(settings)

@@ -1,7 +1,7 @@
 module Kingpin
   class TaskReference < Task
     def run(*params)
-      run_task self.class.name, *params
+      run_task :sync, self.class.name, *params
     end
   end
 end

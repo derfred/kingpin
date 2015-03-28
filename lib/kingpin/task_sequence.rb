@@ -4,10 +4,13 @@ module Kingpin
       @sequence
     end
 
-    def run(*params)
-      self.class.sequence.each do |task|
-        task.new.run *params
+    def run(*args)
+      start
+      @tasks = {}
+      self.class.sequence.each do |task_class|
+        run_task_class(:sync, task_class, *args)
       end
+      finish
     end
   end
 end

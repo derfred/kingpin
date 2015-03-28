@@ -8,7 +8,8 @@ module Kingpin
       end
 
       def action(component, params)
-        puts "starting #{component.name}"
+        log "starting component #{component.name}"
+
         template = component.template_class.new
         template.evaluate(component, params)
 
@@ -27,7 +28,7 @@ module Kingpin
 
       private
         def wait_for(_timeout=60, ignored_exceptions=[], &block)
-          # timeout(_timeout) do
+          timeout(_timeout) do
             while true
               begin
                 return if yield
@@ -38,15 +39,12 @@ module Kingpin
               end
               sleep 0.1
             end
-          # end
+          end
         end
 
         def wait_for_replication_controllers(controllers, timeout=120)
           start = Time.now.to_i
           wait_for(timeout) do
-            diff = Time.now.to_i-start
-            puts diff if diff != @last
-            @last = diff
             controllers.all? do |name|
               replication_controller_ready?(name)
             end
