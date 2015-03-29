@@ -25,7 +25,8 @@
     %tbody
       - for job in jobs
         %tr
-          %td= job.id
+          %td
+            %a{ :href => "/jobs/#{job.id}" }= job.id
           %td= job.name
           %td= job.state
           %td

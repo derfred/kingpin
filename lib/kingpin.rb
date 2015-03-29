@@ -20,7 +20,7 @@ end
   require "kingpin/topology/#{f}"
 end
 
-%w{base home task tasks}.each do |f|
+%w{base home task tasks job}.each do |f|
   require "kingpin/resources/#{f}"
 end
 

@@ -8,6 +8,7 @@ module Kingpin
           add [''],           Kingpin::Resources::Home
           add ['tasks'],      Kingpin::Resources::Tasks
           add ['tasks', :id], Kingpin::Resources::Task
+          add ['jobs', :id],  Kingpin::Resources::Job
         end
 
         app.configure do |config|

@@ -50,7 +50,8 @@ module Kingpin
 
     def receive_task_failure(actor, reason)
       if reason
-        puts "crash #{actor.inspect} #{reason.inspect}"
+        log "sub task failed #{reason.inspect}"
+        publish "task_#{@uuid}", :event => :failure
       end
     end
 
