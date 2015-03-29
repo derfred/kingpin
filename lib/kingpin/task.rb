@@ -57,7 +57,8 @@ module Kingpin
 
     private
       def client
-        @client ||= Kubeclient::Client.new('http://kubo1.meeting-masters.eu:8080/api', "v1beta3")
+        master_url = Kingpin.application.options[:master_url] || 'http://kubo1.meeting-masters.eu:8080/api'
+        @client ||= Kubeclient::Client.new(master_url, "v1beta3")
       end
 
       def configuration

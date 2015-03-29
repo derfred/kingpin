@@ -1,0 +1,16 @@
+h1. short term
+
+* handle command line params
+* implement services (like cron)
+* JSON API (use sinatra)
+* handle task failures, with rollback
+* updating of configuration
+* web ui for starting jobs
+
+h1. long term
+
+* distribute job execution (HA)
+* make embedded web server multithreaded
+* add tests
+* better web ui
+* enforce max_jobs setting

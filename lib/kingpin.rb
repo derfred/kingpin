@@ -1,6 +1,7 @@
 require 'celluloid'
 require 'webmachine'
 require 'kubeclient'
+require 'active_support/hash_with_indifferent_access'
 
 module Kingpin
   def self.application

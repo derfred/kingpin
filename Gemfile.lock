@@ -135,6 +135,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activesupport
   celluloid
   guard
   guard-rspec

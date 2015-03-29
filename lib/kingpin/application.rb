@@ -20,7 +20,11 @@ module Kingpin
 
       @configuration = load_config
       @registry      = Kingpin::Registry.supervise_as :registry
-      @runner        = Kingpin::JobRunner.pool :size => settings.max_tasks
+      @runner        = Kingpin::JobRunner.pool :size => settings.max_jobs
+    end
+
+    def options
+      settings.options
     end
 
     def run
@@ -42,7 +46,7 @@ module Kingpin
           result = OpenStruct.new
           result.address   = '0.0.0.0'
           result.port      = 80
-          result.options   = {}
+          result.options   = ActiveSupport::HashWithIndifferentAccess.new
           result.max_tasks = 10
           result
         end

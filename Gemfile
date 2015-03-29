@@ -10,3 +10,4 @@ gem 'guard'
 gem 'guard-rspec'
 gem 'kubeclient', :git => "https://github.com/derfred/kubeclient.git", :branch => "namespace_support"
 gem 'timeout-extensions'
+gem 'activesupport'
