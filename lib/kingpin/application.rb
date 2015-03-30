@@ -20,7 +20,7 @@ module Kingpin
 
       @configuration = load_config
       @registry      = Kingpin::Registry.supervise_as :registry
-      @runner        = Kingpin::JobRunner.pool :size => settings.max_jobs
+      @job_runner    = Kingpin::JobRunner.pool :size => settings.max_jobs
     end
 
     def options
@@ -33,7 +33,7 @@ module Kingpin
       if settings.initial
         task = configuration.find(settings.initial)
         raise ArgumentError if task.nil?
-        @runner.async.run task, settings.options
+        @job_runner.async.run task, settings.options
       end
 
       web_server = Kingpin::WebServerBuilder.new.build_application(settings)

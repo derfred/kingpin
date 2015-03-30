@@ -9,9 +9,9 @@ module Kingpin
       @tasks || []
     end
 
-    attr_reader :topology, :tasks
-    def initialize(topology, tasks)
-      @topology, @tasks = topology, tasks
+    attr_reader :topology, :tasks, :services
+    def initialize(topology, tasks, services)
+      @topology, @tasks, @services = topology, tasks, services
     end
 
     def find(name)

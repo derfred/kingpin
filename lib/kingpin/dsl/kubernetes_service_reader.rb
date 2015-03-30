@@ -1,0 +1,30 @@
+module Kingpin
+  module Dsl
+    class KubernetesServiceReader
+      include Kingpin::DslHelper
+
+      attr_accessor :name, :labels, :selector
+      def initialize(&block)
+        eval_dsl_block &block
+      end
+
+      def spec(options)
+        @spec = options
+      end
+
+      def read
+        hash = {
+          :kind       => "Service",
+          :namespace  => "default",
+          :apiVersion => "v1beta3",
+          :metadata => {
+            :name   => @name,
+            :labels => @labels
+          },
+          :spec => @spec.merge(:selector => @selector)
+        }
+        Kubeclient::Service.new(hash)
+      end
+    end
+  end
+end

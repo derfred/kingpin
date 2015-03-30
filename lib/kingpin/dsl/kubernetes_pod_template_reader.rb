@@ -1,6 +1,6 @@
 module Kingpin
   module Dsl
-    class PodTemplateReader
+    class KubernetesPodTemplateReader
       include Kingpin::DslHelper
 
       attr_accessor :labels
@@ -10,7 +10,7 @@ module Kingpin
       end
 
       def container(&block)
-        @containers << Kingpin::Dsl::PodTemplateContainerReader.new(&block).read
+        @containers << Kingpin::Dsl::KubernetesPodTemplateContainerReader.new(&block).read
       end
 
       def read

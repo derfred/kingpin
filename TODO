@@ -1,6 +1,5 @@
 h1. short term
 
-* handle command line params
 * implement services (like cron)
 * JSON API (use sinatra)
 * handle task failures, with rollback

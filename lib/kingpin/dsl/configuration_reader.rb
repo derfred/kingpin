@@ -4,8 +4,9 @@ module Kingpin
       include Kingpin::DslHelper
 
       def initialize(filename, options)
-        @options = options
-        @tasks   = []
+        @options  = options
+        @tasks    = []
+        @services = []
         instance_eval File.read(filename), filename, 0
       end
 
@@ -17,8 +18,12 @@ module Kingpin
         @tasks << Kingpin::Dsl::TaskReader.new(name, &block).read
       end
 
+      def service(name, &block)
+        @services << Kingpin::Dsl::ServiceReader.new(name, &block).read
+      end
+
       def read
-        Kingpin::Configuration.new(@topology, @tasks)
+        Kingpin::Configuration.new(@topology, @tasks, @services)
       end
     end
   end

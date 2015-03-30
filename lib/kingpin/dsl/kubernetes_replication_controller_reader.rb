@@ -1,6 +1,6 @@
 module Kingpin
   module Dsl
-    class ReplicationControllerReader
+    class KubernetesReplicationControllerReader
       include Kingpin::DslHelper
 
       attr_accessor :name, :labels, :replicas, :selector
@@ -11,7 +11,7 @@ module Kingpin
       end
 
       def template(&block)
-        @template = Kingpin::Dsl::PodTemplateReader.new(&block).read
+        @template = Kingpin::Dsl::KubernetesPodTemplateReader.new(&block).read
       end
 
       def read

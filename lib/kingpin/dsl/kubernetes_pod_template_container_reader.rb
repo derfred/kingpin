@@ -1,6 +1,6 @@
 module Kingpin
   module Dsl
-    class PodTemplateContainerReader
+    class KubernetesPodTemplateContainerReader
       include Kingpin::DslHelper
 
       attr_accessor :name, :image, :liveness_probe

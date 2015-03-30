@@ -3,27 +3,21 @@ module Kingpin
     class ServiceReader
       include Kingpin::DslHelper
 
-      attr_accessor :name, :labels, :selector
-      def initialize(&block)
+      def initialize(name, &block)
+        @name  = name
         eval_dsl_block &block
       end
 
-      def spec(options)
-        @spec = options
+      def action(&block)
+        @action = block
+      end
+
+      def schedule(options)
+        @schedule = options
       end
 
       def read
-        hash = {
-          :kind       => "Service",
-          :namespace  => "default",
-          :apiVersion => "v1beta3",
-          :metadata => {
-            :name   => @name,
-            :labels => @labels
-          },
-          :spec => @spec.merge(:selector => @selector)
-        }
-        Kubeclient::Service.new(hash)
+        
       end
     end
   end
