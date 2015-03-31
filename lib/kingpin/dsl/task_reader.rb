@@ -56,7 +56,7 @@ module Kingpin
         end
 
         if @type == :sequence
-          _build_sequence(@name, @tasks)
+          _build_sequence(@name, @description, @tasks)
         else
           _build_task(@name, @description, @action)
         end
@@ -77,10 +77,11 @@ module Kingpin
           klass
         end
 
-        def _build_sequence(name, sequence)
+        def _build_sequence(name, description, sequence)
           klass = Class.new(Kingpin::TaskSequence)
           klass.instance_variable_set(:@sequence, sequence)
           klass.instance_variable_set(:@name, name)
+          klass.instance_variable_set(:@description, description)
           klass
         end
     end

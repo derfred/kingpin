@@ -1,6 +1,6 @@
-%h1 Job #{job.id} - #{job.name}
+%h1 Job #{@job.id} - #{@job.name}
 
-.btn.btn-primary= job.state
+.btn.btn-primary= @job.state
 
 %table.table
   %thead
@@ -9,7 +9,7 @@
       %td Time
       %td Message
   %tbody
-    - for line in job.log
+    - for line in @job.log
       %tr
         %td= line[:path].last
         %td= line[:time]

@@ -13,14 +13,15 @@ module Kingpin
       @instance.run
     end
 
-    attr_reader :registry, :configuration
+    attr_reader :configuration
 
     def initialize(args)
       parse args
 
       @configuration = load_config
-      @registry      = Kingpin::Registry.supervise_as :registry
       @job_runner    = Kingpin::JobRunner.pool :size => settings.max_jobs
+      Kingpin::Registry.supervise_as :registry
+      Kingpin::ServiceManager.supervise_as :service_manager
     end
 
     def options
@@ -36,8 +37,9 @@ module Kingpin
         @job_runner.async.run task, settings.options
       end
 
-      web_server = Kingpin::WebServerBuilder.new.build_application(settings)
-      web_server.run
+      Kingpin.service_manager.async.run_services configuration.services
+
+      run_webserver
     end
 
     private
@@ -84,7 +86,18 @@ module Kingpin
       end
 
       def load_config
-        Kingpin::Dsl::ConfigurationReader.new(settings.config, settings.options).read
+        Kingpin::Dsl::ConfigurationReader.new(settings.config).read
+      end
+
+      def run_webserver
+        require 'kingpin/web_server'
+        supervisor = Kingpin::WebServer.build_application(settings)
+        begin
+          sleep
+        rescue Interrupt
+          Celluloid.logger.info "Interrupt received... shutting down"
+          supervisor.terminate
+        end
       end
   end
 end

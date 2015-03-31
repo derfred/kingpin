@@ -3,8 +3,7 @@ module Kingpin
     class ConfigurationReader
       include Kingpin::DslHelper
 
-      def initialize(filename, options)
-        @options  = options
+      def initialize(filename)
         @tasks    = []
         @services = []
         instance_eval File.read(filename), filename, 0
