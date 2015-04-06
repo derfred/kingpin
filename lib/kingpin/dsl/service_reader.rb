@@ -8,6 +8,14 @@ module Kingpin
         eval_dsl_block &block
       end
 
+      def description=(description)
+        @description = description
+      end
+
+      def description(description)
+        @description = description
+      end
+
       def action(&block)
         @action = block
       end
@@ -17,7 +25,12 @@ module Kingpin
       end
 
       def read
-        
+        klass = Class.new(Kingpin::Service)
+        klass.send :define_method, :action, &@action
+        klass.instance_variable_set(:@name, @name)
+        klass.instance_variable_set(:@description, @description)
+        klass.instance_variable_set(:@schedule, @schedule)
+        klass
       end
     end
   end

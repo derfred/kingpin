@@ -9,7 +9,7 @@ module Kingpin
       @services = []
     end
 
-    def run_services(services)
+    def run_services(services, *params)
       stop_services
       start_services services
     end
@@ -19,8 +19,8 @@ module Kingpin
         @services.each(&:stop)
       end
 
-      def start_services(services)
-        @services = services.map { |s| Kingpin::ServiceRunner.new_link s }
+      def start_services(services, *params)
+        @services = services.map { |s| Kingpin::ServiceRunner.new_link(s, *params).async.start }
       end
   end
 end

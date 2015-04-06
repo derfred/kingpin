@@ -34,6 +34,7 @@ module Kingpin
                 return if yield
               rescue Exception => e
                 unless [ignored_exceptions].flatten.any? { |i| e.is_a?(i) }
+                  puts e.inspect
                   raise
                 end
               end
@@ -46,7 +47,13 @@ module Kingpin
           start = Time.now.to_i
           wait_for(timeout) do
             controllers.all? do |name|
-              replication_controller_ready?(name)
+              begin
+                replication_controller_ready?(name)
+              rescue KubeException => e
+                unless e.message == "Request Timeout"
+                  raise e
+                end
+              end
             end
           end
         end
