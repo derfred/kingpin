@@ -8,5 +8,9 @@ module Kingpin
     def initialize(service)
       @service = service
     end
+
+    def task_exit(actor, reason)
+      puts "exit #{actor.inspect} #{reason.inspect}"
+    end
   end
 end

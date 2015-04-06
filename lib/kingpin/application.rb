@@ -34,20 +34,28 @@ module Kingpin
       if settings.initial
         task = configuration.find(settings.initial)
         raise ArgumentError if task.nil?
-        @job_runner.async.run task, settings.options
+        if server_mode?
+          @job_runner.async.run task, settings.options
+        else
+          @job_runner.run task, settings.options
+        end
       end
 
-      Kingpin.service_manager.async.run_services configuration.services
-
-      run_webserver
+      if server_mode?
+        Kingpin.service_manager.async.run_services configuration.services
+        run_webserver
+      end
     end
 
     private
+      def server_mode?
+        !! settings.port
+      end
+
       def settings
         @settings ||= begin
           result = OpenStruct.new
           result.address   = '0.0.0.0'
-          result.port      = 80
           result.options   = ActiveSupport::HashWithIndifferentAccess.new
           result.max_tasks = 10
           result
