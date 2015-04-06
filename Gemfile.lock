@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/derfred/kubeclient.git
-  revision: 70098f9d7a5a4fd0f6b0457376860518923680d8
+  revision: a71806ad5753da48f100c1ed8c0f78c7c04f2a4f
   branch: namespace_support
   specs:
-    kubeclient (0.1.8)
+    kubeclient (0.1.9)
       activesupport
       json
       recursive-open-struct
@@ -88,7 +88,7 @@ GEM
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
-    recursive-open-struct (0.5.0)
+    recursive-open-struct (0.6.1)
     reel (0.5.0)
       celluloid (>= 0.15.1)
       celluloid-io (>= 0.15.0)

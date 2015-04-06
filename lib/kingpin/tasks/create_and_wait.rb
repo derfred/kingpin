@@ -42,7 +42,7 @@ module Kingpin
           end
         end
 
-        def wait_for_replication_controllers(controllers, timeout=120)
+        def wait_for_replication_controllers(controllers, timeout=320)
           start = Time.now.to_i
           wait_for(timeout) do
             controllers.all? do |name|
